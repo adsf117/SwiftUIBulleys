@@ -7,14 +7,47 @@
 
 import SwiftUI
 
-struct RoundView: View {
+struct RoundImageViewStroked: View {
+    var systemName : String
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Image(systemName : systemName)
+            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+            .foregroundColor(Color("TextColor"))
+            .frame(width: 56.0, height: 56.0)
+            .overlay(
+                Circle()
+                    .strokeBorder(Color("ButtonStrokeColor"), lineWidth: 2.0, antialiased: true)
+                )
     }
 }
 
+struct RoundImageViewFilled: View {
+    var systemName : String
+    var body: some View {
+        Image(systemName : systemName)
+            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+            .foregroundColor(Color("ButtonFilledTextColor"))
+            .frame(width: 56.0, height: 56.0)
+            .foregroundColor(Color("ButtonFilledTextColor"))
+            .background(Circle().fill(Color("ButtonFilledBackgoundColor")))
+        
+    }
+}
+
+struct PreviewsView: View {
+    var body: some View {
+        VStack{
+            RoundImageViewStroked(systemName: "arrow.counterclockwise")
+                .padding(1.0)
+            RoundImageViewFilled(systemName: "list.dash")
+
+        }
+    }
+}
 struct RoundView_Previews: PreviewProvider {
     static var previews: some View {
-        RoundView()
+        PreviewsView()
+        PreviewsView().preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
+
     }
 }

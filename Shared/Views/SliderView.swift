@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct SliderView: View {
+    
+    @Binding var sliderValue : Double
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct SliderView_Previews: PreviewProvider {
-    static var previews: some View {
-        SliderView()
+        HStack {
+            SliderLabelView(text:"1")
+            Slider(value: $sliderValue, in: 1.0...100.0)
+            SliderLabelView(text:"100")
+               
+        }
     }
 }

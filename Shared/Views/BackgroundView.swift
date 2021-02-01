@@ -8,13 +8,45 @@
 import SwiftUI
 
 struct BackgroundView: View {
+    @Binding var game : Game
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            TopView()
+            Spacer()
+            BottonView(game:$game)
+        }.padding()
+        .background(Color("background").edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/))
+    }
+}
+
+
+struct TopView: View {
+    var body: some View {
+        HStack{
+            RoundImageViewStroked(systemName: "arrow.counterclockwise")
+            Spacer()
+            RoundImageViewFilled(systemName: "list.dash")
+        }
+    }
+}
+
+struct BottonView: View {
+    @Binding var game : Game
+
+    var body: some View {
+        HStack{
+            NumberTextView(title: "Score", text: String(game.score))
+            Spacer()
+
+            NumberTextView(title: "Round",text: String(game.round))
+            
+        }
+
     }
 }
 
 struct BackgroundView_Previews: PreviewProvider {
     static var previews: some View {
-        BackgroundView()
+        BackgroundView(game: .constant(Game()))
     }
 }

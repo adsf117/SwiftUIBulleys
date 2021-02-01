@@ -9,7 +9,14 @@ import SwiftUI
 
 struct ShapesView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Circle()
+                .fill(Color.blue)
+                .frame(width: 200, height: 100)
+        }
+        .background(Color.green)
+
+        
     }
 }
 
